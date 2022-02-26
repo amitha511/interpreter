@@ -1,3 +1,5 @@
+import executor.Executor;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +10,6 @@ public class Main {
                 "j = 2 * ++i");
         Executor executor = new Executor();
         executor.executeCommands(commands);
-        System.out.println(executor.state);
+        System.out.println(executor.getState());
     }
 }

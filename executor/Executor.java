@@ -1,3 +1,5 @@
+package executor;
+
 import commands.AssignmentCommandExecutor;
 import commands.ICommandExecutor;
 
@@ -14,8 +16,8 @@ import java.util.Map;
         4. The order of the commands is important.
  */
 public class Executor {
-    Map<String,Integer> state;
-    ICommandExecutor commandExecutor;
+    private Map<String,Integer> state;
+    private ICommandExecutor commandExecutor;
 
     public Executor(){
         state = new HashMap<>();
@@ -36,5 +38,9 @@ public class Executor {
      */
     private void execute(String command) {
         commandExecutor.execute(command, state);
+    }
+
+    public Map<String,Integer> getState(){
+        return state;
     }
 }
