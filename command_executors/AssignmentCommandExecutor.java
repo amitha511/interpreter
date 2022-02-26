@@ -1,5 +1,6 @@
 package command_executors;
 
+import expression_analyzers.ArithmeticExpressionAnalyser;
 import expression_analyzers.IExpressionAnalyzer;
 import expression_models.ExpressionTree;
 import token_analyzer.ArithmeticTokenAnalyzer;
@@ -12,8 +13,8 @@ public class AssignmentCommandExecutor implements ICommandExecutor {
     IExpressionAnalyzer expressionAnalyzer;
     ArithmeticTokenAnalyzer tokenAnalyzer;
 
-    public AssignmentCommandExecutor(IExpressionAnalyzer expressionAnalyzer){
-        this.expressionAnalyzer = expressionAnalyzer;
+    public AssignmentCommandExecutor(){
+        this.expressionAnalyzer = new ArithmeticExpressionAnalyser();
         this.tokenAnalyzer = new ArithmeticTokenAnalyzer();
     }
 

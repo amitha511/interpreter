@@ -10,7 +10,7 @@ public class Executor {
     ICommandExecutor commandExecutor;
     public Executor(){
         varsState = new HashMap<>();
-        commandExecutor = new AssignmentCommandExecutor(new ArithmeticExpressionAnalyser());
+        commandExecutor = new AssignmentCommandExecutor();
     }
 
     /*
