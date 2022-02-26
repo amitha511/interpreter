@@ -1,4 +1,4 @@
-package token_analyzer;
+package tokens;
 
 public abstract class AbstractTokenAnalyzer {
     public boolean isVariable(String token){

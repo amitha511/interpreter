@@ -1,20 +1,20 @@
-package command_executors;
+package commands;
 
-import expression_analyzers.ArithmeticExpressionAnalyser;
-import expression_analyzers.IExpressionAnalyzer;
-import expression_models.ExpressionTree;
-import token_analyzer.ArithmeticTokenAnalyzer;
+import expressions.tree_generators.ArithmeticExpressionTreeGenerator;
+import expressions.tree_generators.IExpressionTreeGenerator;
+import expressions.models.ExpressionTree;
+import tokens.ArithmeticTokenAnalyzer;
 
 import java.util.Arrays;
 import java.util.Map;
 
 public class AssignmentCommandExecutor implements ICommandExecutor {
 
-    IExpressionAnalyzer expressionAnalyzer;
+    IExpressionTreeGenerator expressionAnalyzer;
     ArithmeticTokenAnalyzer tokenAnalyzer;
 
     public AssignmentCommandExecutor(){
-        this.expressionAnalyzer = new ArithmeticExpressionAnalyser();
+        this.expressionAnalyzer = new ArithmeticExpressionTreeGenerator();
         this.tokenAnalyzer = new ArithmeticTokenAnalyzer();
     }
 

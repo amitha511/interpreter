@@ -1,26 +1,30 @@
-import command_executors.AssignmentCommandExecutor;
-import expression_analyzers.ArithmeticExpressionAnalyser;
-import command_executors.ICommandExecutor;
+import commands.AssignmentCommandExecutor;
+import commands.ICommandExecutor;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+    The class holds state of all the variables in the program
+    assumptions:
+        1. The commands in the program will always be kind of assignment command.
+        2. The program state will store only integers without any other types.
+ */
 public class Executor {
-    Map<String,Integer> varsState;
+    Map<String,Integer> state;
     ICommandExecutor commandExecutor;
     public Executor(){
-        varsState = new HashMap<>();
+        state = new HashMap<>();
         commandExecutor = new AssignmentCommandExecutor();
     }
 
     /*
-        This method changes varsState based on a given expression
+        This method changes the state while executing the command
         The method has several assumptions:
-            1. The expression is a string where tokens are always separated by a space
-            2. Integer can not be equal to Integer.MIN_VALUE in expressions
-            3. The expression is valid and always kind of assignment operation
+            1. The command is presented as a string where tokens are always separated by a space
+            2. Integer token can not be equal to Integer.MIN_VALUE.
      */
-    public void calculate(String expr) {
-        commandExecutor.execute(expr, varsState);
+    public void execute(String command) {
+        commandExecutor.execute(command, state);
     }
 }

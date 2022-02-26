@@ -1,4 +1,4 @@
-package expression_models;
+package expressions.models;
 
 public class ExpressionTree {
     public ExpressionTree left;

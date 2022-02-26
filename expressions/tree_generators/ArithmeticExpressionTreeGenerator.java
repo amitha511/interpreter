@@ -1,15 +1,18 @@
-package expression_analyzers;
+package expressions.tree_generators;
 
-import expression_models.ExpressionTree;
+import expressions.models.ExpressionTree;
 
 /*
     Arithmetic expression is an expression that can always be evaluated to a single integer
-    This class analyzes arithmetic expressions and generates an expression tree
-    e.g :
-        1 + 2 * 3 + 1 => 8
+    The class analyzes arithmetic expressions and generates an expression tree
  */
-public class ArithmeticExpressionAnalyser implements IExpressionAnalyzer {
+public class ArithmeticExpressionTreeGenerator implements IExpressionTreeGenerator {
     
+    @Override
+    public ExpressionTree generateTree(String[] tokens) {
+        return generateTree(tokens, 0, tokens.length-1);
+    }
+
     private ExpressionTree generateTree(String[] tokens, int start, int end){
         if(start < 0 || end >= tokens.length || start > end){
             return null;
@@ -53,10 +56,5 @@ public class ArithmeticExpressionAnalyser implements IExpressionAnalyzer {
             toReturn = new ExpressionTree(leaf);
         }
         return toReturn;
-    }
-
-    @Override
-    public ExpressionTree generateTree(String[] tokens) {
-        return generateTree(tokens, 0, tokens.length-1);
     }
 }

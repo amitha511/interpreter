@@ -1,4 +1,4 @@
-package token_analyzer;
+package tokens;
 
 public class ArithmeticTokenAnalyzer extends AbstractTokenAnalyzer {
 
