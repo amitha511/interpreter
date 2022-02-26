@@ -1,11 +1,14 @@
-package analyzers;
+package expression_analyzers;
 
 import expression_models.ExpressionTree;
 
 /*
-    Integer expression should always be evaluated to a single integer
+    Arithmetic expression is an expression that can always be evaluated to a single integer
+    This class analyzes arithmetic expressions and generates an expression tree
+    e.g :
+        1 + 2 * 3 + 1 => 8
  */
-public class IntegerExpressionAnalyser implements IExpressionAnalyzer {
+public class ArithmeticExpressionAnalyser implements IExpressionAnalyzer {
     
     private ExpressionTree generateTree(String[] tokens, int start, int end){
         if(start < 0 || end >= tokens.length || start > end){
@@ -17,18 +20,19 @@ public class IntegerExpressionAnalyser implements IExpressionAnalyzer {
         }
 
         for(int i=start; i <= end; i++){
-            String c = tokens[i];
-            if(c.equals("+") || c.equals("-")){
-                res = new ExpressionTree(c);
+            String token = tokens[i];
+            if(token.equals("+") || token.equals("-")){
+                res = new ExpressionTree(token);
                 res.left = generateTree(tokens, start, i-1);
                 res.right = generateTree(tokens , i+1 ,end);
                 return res;
             }
         }
-        for(int i=start; i < end; i++){
-            String c = tokens[i];
-            if(c.equals("*")){
-                res = new ExpressionTree(c);
+
+        for(int i=start; i <= end; i++){
+            String token = tokens[i];
+            if(token.equals("*")){
+                res = new ExpressionTree(token);
                 res.left = generateTree(tokens, start, i-1);
                 res.right = generateTree(tokens , i+1 ,end);
                 return res;

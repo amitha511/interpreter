@@ -1,4 +1,4 @@
-package analyzers;
+package expression_analyzers;
 
 import expression_models.ExpressionTree;
 

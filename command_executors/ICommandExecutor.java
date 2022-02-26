@@ -1,4 +1,4 @@
-package analyzers;
+package command_executors;
 
 import java.util.Map;
 
