@@ -7,9 +7,7 @@ public class Main {
                 "i = -1",
                 "j = 2 * ++i");
         Executor executor = new Executor();
-        for(String command : commands){
-            executor.execute(command);
-        }
+        executor.executeCommands(commands);
         System.out.println(executor.state);
     }
 }
