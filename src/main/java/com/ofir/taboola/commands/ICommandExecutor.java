@@ -1,4 +1,4 @@
-package commands;
+package com.ofir.taboola.commands;
 
 import java.util.Map;
 
