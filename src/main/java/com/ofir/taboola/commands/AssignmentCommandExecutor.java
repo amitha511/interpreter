@@ -1,9 +1,9 @@
-package commands;
+package com.ofir.taboola.commands;
 
-import expressions.tree_generators.ArithmeticExpressionTreeGenerator;
-import expressions.tree_generators.IExpressionTreeGenerator;
-import expressions.models.ExpressionTree;
-import tokens.ArithmeticTokenAnalyzer;
+import com.ofir.taboola.expressions.tree_generators.ArithmeticExpressionTreeGenerator;
+import com.ofir.taboola.expressions.tree_generators.IExpressionTreeGenerator;
+import com.ofir.taboola.expressions.models.ExpressionTree;
+import com.ofir.taboola.tokens.ArithmeticTokenAnalyzer;
 
 import java.util.Arrays;
 import java.util.Map;

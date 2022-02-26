@@ -1,4 +1,4 @@
-package tokens;
+package com.ofir.taboola.tokens;
 
 public class ArithmeticTokenAnalyzer extends AbstractTokenAnalyzer {
 

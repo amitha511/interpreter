@@ -1,4 +1,6 @@
-import executor.Executor;
+package com.ofir.taboola;
+
+import com.ofir.taboola.executor.Executor;
 
 import java.util.Arrays;
 import java.util.List;

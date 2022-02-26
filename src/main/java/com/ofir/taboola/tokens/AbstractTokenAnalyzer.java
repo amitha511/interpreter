@@ -1,4 +1,4 @@
-package tokens;
+package com.ofir.taboola.tokens;
 
 public abstract class AbstractTokenAnalyzer {
     public boolean isVariable(String token){

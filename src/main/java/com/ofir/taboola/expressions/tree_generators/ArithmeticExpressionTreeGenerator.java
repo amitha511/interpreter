@@ -1,10 +1,10 @@
-package expressions.tree_generators;
+package com.ofir.taboola.expressions.tree_generators;
 
-import expressions.models.ExpressionTree;
+import com.ofir.taboola.expressions.models.ExpressionTree;
 
 /*
     Arithmetic expression is an expression that can always be evaluated to a single integer
-    The class analyzes arithmetic expressions and generates an expression tree
+    The class analyzes arithmetic com.ofir.taboola.expressions and generates an expression tree
  */
 public class ArithmeticExpressionTreeGenerator implements IExpressionTreeGenerator {
     

@@ -1,4 +1,6 @@
-import executor.Executor;
+package com.ofir.taboola;
+
+import com.ofir.taboola.executor.Executor;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package expressions.models;
+package com.ofir.taboola.expressions.models;
 
 public class ExpressionTree {
     public ExpressionTree left;
