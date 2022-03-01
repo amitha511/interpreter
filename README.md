@@ -27,8 +27,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project is a lightweight interpreter executing assignment commands by order. <br />
-The input of the program is a text file , contains a series of text based assignment commands. <br />
+The project is a lightweight interpreter that is able to execute commands. <br />
+The input of the program is a text file , contains a series of text based commands. <br />
 The program analyzes the text, executes the commands and finally prints the values of all the variables. </br> </br>
 
 
@@ -77,7 +77,7 @@ The tools that are involved in the project:
    ```
 2. make sure that you have make installed:
    ```sh
-    make run -s examples/input.txt
+    make --version
    ```
 
 ## Executing the program
