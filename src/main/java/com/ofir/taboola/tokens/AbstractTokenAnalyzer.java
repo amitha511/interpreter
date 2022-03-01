@@ -3,6 +3,7 @@ package com.ofir.taboola.tokens;
 public abstract class AbstractTokenAnalyzer {
 
     public boolean isVariable(String token){
+        if(token.isEmpty()) return false;
         for(int i=0; i < token.length(); i++){
             char c = token.charAt(i);
             boolean isAlphabetic = Character.isAlphabetic(c);

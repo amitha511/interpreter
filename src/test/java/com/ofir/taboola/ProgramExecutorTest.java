@@ -1,8 +1,8 @@
 package com.ofir.taboola;
 
+import com.ofir.taboola.exceptions.ErrorMessages;
 import com.ofir.taboola.exceptions.InvalidCommandException;
-import com.ofir.taboola.exceptions.InvalidTokenException;
-import com.ofir.taboola.executor.CommandExecutor;
+import com.ofir.taboola.executor.ProgramExecutor;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
-public class ExecutorTest {
+public class ProgramExecutorTest {
 
     @Test
-    public void testState() {
+    public void testState() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 5",
                 "j = 2"
@@ -26,7 +27,7 @@ public class ExecutorTest {
     }
 
     @Test
-    public void testPreIncrement() {
+    public void testPreIncrement() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 5",
                 "j = ++i"
@@ -37,7 +38,7 @@ public class ExecutorTest {
     }
 
     @Test
-    public void testPostIncrement() {
+    public void testPostIncrement() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 5",
                 "j = i++"
@@ -48,7 +49,7 @@ public class ExecutorTest {
     }
 
     @Test
-    public void testPostIncrementChanging() {
+    public void testPostIncrementChanging() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 5",
                 "j = i++ + i"
@@ -59,7 +60,7 @@ public class ExecutorTest {
     }
 
     @Test
-    public void testPlusEqual() {
+    public void testPlusEqual() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 3",
                 "j = 0",
@@ -71,7 +72,7 @@ public class ExecutorTest {
     }
 
     @Test
-    public void testMul() {
+    public void testMul() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = -3",
                 "j = i * 5"
@@ -82,7 +83,7 @@ public class ExecutorTest {
     }
 
     @Test
-    public void testMulBeforeAdd() {
+    public void testMulBeforeAdd() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 1",
                 "j = i * 5 + i * 4"
@@ -92,14 +93,53 @@ public class ExecutorTest {
         assertEquals(state.get("j") , 9);
     }
 
-    private Map<String,Integer> execute(List<String> commands){
-        CommandExecutor executor = new CommandExecutor();
+    @Test
+    public void testVariableNotDeclared() {
+        List<String> commands = Arrays.asList(
+                "i = 1",
+                "j = k"
+        );
+        try {
+            execute(commands);
+        } catch (InvalidCommandException e) {
+            assertNotNull(e);
+            assertEquals(ErrorMessages.variableNotDeclared("k"), e.getMessage());
+        }
+    }
+
+    @Test
+    public void testVariableNotDeclaredPlusPlus() {
+        List<String> commands = Arrays.asList(
+                "i = 1",
+                "j = k++"
+        );
+        try {
+            execute(commands);
+        } catch (InvalidCommandException e) {
+            assertNotNull(e);
+            assertEquals(ErrorMessages.variableNotDeclared("k"), e.getMessage());
+        }
+    }
+
+    @Test
+    public void testInvalidToken() {
+        List<String> commands = Arrays.asList(
+                "i = 1",
+                "j = #"
+        );
+
+        try {
+            execute(commands);
+        } catch (InvalidCommandException e) {
+            assertNotNull(e);
+            assertEquals(ErrorMessages.invalidTokenMessage("#"), e.getMessage());
+        }
+    }
+
+    private Map<String,Integer> execute(List<String> commands) throws InvalidCommandException {
+        ProgramExecutor executor = new ProgramExecutor();
         for(String command : commands){
-            try {
-                executor.execute(command);
-            } catch (InvalidCommandException e) {
-                return null;
-            }
+            executor.execute(command);
         }
         return executor.getState();
     }

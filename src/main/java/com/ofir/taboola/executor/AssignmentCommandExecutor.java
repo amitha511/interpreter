@@ -1,77 +1,73 @@
 package com.ofir.taboola.executor;
 
-import com.ofir.taboola.exceptions.InvalidTokenException;
+import com.ofir.taboola.exceptions.NonAssignmentException;
+import com.ofir.taboola.exceptions.InvalidCommandException;
 import com.ofir.taboola.expressions.tree_generators.ArithmeticExpressionTreeGenerator;
 import com.ofir.taboola.expressions.tree_generators.IExpressionTreeGenerator;
-import com.ofir.taboola.expressions.models.ExpressionTree;
+import com.ofir.taboola.expressions.ExpressionTree;
 import com.ofir.taboola.tokens.ArithmeticTokenAnalyzer;
-import com.ofir.taboola.tokens.AssignmentTokenValidator;
-import com.ofir.taboola.tokens.ITokenValidator;
+import com.ofir.taboola.validators.TokenValidator;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 public class AssignmentCommandExecutor implements ICommandExecutor {
 
     IExpressionTreeGenerator expressionAnalyzer;
     ArithmeticTokenAnalyzer tokenAnalyzer;
-    ITokenValidator tokenValidator;
 
     public AssignmentCommandExecutor(){
         this.expressionAnalyzer = new ArithmeticExpressionTreeGenerator();
         this.tokenAnalyzer = new ArithmeticTokenAnalyzer();
-        this.tokenValidator = new AssignmentTokenValidator();
     }
 
     @Override
-    public void execute(String command, Map<String,Integer> varsState) throws InvalidTokenException {
-        String[] commandAsArr = command.split(" ");
-        String dstVar = commandAsArr[0];
-        String equationOperation = commandAsArr[1];
-        String[] expression = Arrays.copyOfRange(commandAsArr,2, commandAsArr.length);
-        ExpressionTree tree = buildTree(expression, equationOperation, dstVar);
+    public void execute(String command, Map<String,Integer> varsState) throws InvalidCommandException {
+        String[] commandTokens = command.split(" ");
+        String dstVar = commandTokens[0];
+        String assignmentOperator = commandTokens[1];
+        String[] expressionTokens = Arrays.copyOfRange(commandTokens,2, commandTokens.length);
 
-        int exprEvaluated = evaluateExpressionTree(tree, varsState);
+        ExpressionTree tree = buildExpressionTree(expressionTokens, assignmentOperator, dstVar,
+                new TokenValidator(varsState));
 
-        varsState.put(dstVar, exprEvaluated);
+        int val = evaluateExpressionTree(tree, varsState);
+
+        varsState.put(dstVar, val);
     }
 
-    private ExpressionTree buildTree(String[] tokens, String equationOperation, String dst){
-        ExpressionTree tree = expressionAnalyzer.generateTree(tokens);
-        if(equationOperation.equals("+=")){
+    private ExpressionTree buildExpressionTree(String[] tokens, String assignmentOperator, String dst,
+                                               TokenValidator tv) throws InvalidCommandException {
+        ExpressionTree tree = expressionAnalyzer.generateTree(tokens, tv);
+        if(assignmentOperator.equals("+=")){
             ExpressionTree parent = new ExpressionTree("+");
             parent.left = new ExpressionTree(dst);
             parent.right = tree;
             tree = parent;
-        } else if(!equationOperation.equals("=")){
-            System.err.println("not an assignment command !!");
+        } else if(!assignmentOperator.equals("=")){
+            throw new NonAssignmentException("assignment operator is missing");
         }
         return tree;
     }
 
-    private int evaluateExpressionTree(ExpressionTree exprTree,
-                                       Map<String,Integer> varsState) throws InvalidTokenException {
+    private int evaluateExpressionTree(ExpressionTree exprTree, Map<String,Integer> varsState) {
         if(exprTree == null) return 0;
         String token = exprTree.getVal();
-        validate(token, varsState);
         //++i or i++
         if(tokenAnalyzer.isIncrement(token)){
-            String variableToInc;
+            String varToIncrement;
             int evaluated;
             //++i scenario
             if(exprTree.left == null){
-                variableToInc = exprTree.right.getVal();
-                validate(variableToInc, varsState);
-                evaluated = varsState.get(variableToInc) + 1;
+                varToIncrement = exprTree.right.getVal();
+                evaluated = varsState.get(varToIncrement) + 1;
             }
             //i++ scenario
             else{
-                variableToInc = exprTree.left.getVal();
-                validate(variableToInc, varsState);
-                evaluated = varsState.get(variableToInc);
+                varToIncrement = exprTree.left.getVal();
+                evaluated = varsState.get(varToIncrement);
             }
-            varsState.put(variableToInc, varsState.get(variableToInc) +1);
+            varsState.put(varToIncrement, varsState.get(varToIncrement) +1);
             return evaluated;
         }
         if(tokenAnalyzer.isInteger(token)) {
@@ -93,12 +89,5 @@ public class AssignmentCommandExecutor implements ICommandExecutor {
                     * evaluateExpressionTree(exprTree.right, varsState);
         }
         return 0;
-    }
-
-    private void validate(String token, Map<String,Integer> state) throws InvalidTokenException {
-        List<InvalidTokenException> errors = this.tokenValidator.validate(token, this.tokenAnalyzer, state);
-        if(!errors.isEmpty()){
-            throw errors.get(0);
-        }
     }
 }

@@ -1,7 +1,7 @@
 package com.ofir.taboola;
 
 import com.ofir.taboola.exceptions.InvalidCommandException;
-import com.ofir.taboola.executor.CommandExecutor;
+import com.ofir.taboola.executor.ProgramExecutor;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,12 +20,12 @@ public class Main {
         List<String> commands = extractCommandsFromFile(args[0]);
         if(commands == null) return;
 
-        CommandExecutor executor = new CommandExecutor();
+        ProgramExecutor executor = new ProgramExecutor();
         for(String command : commands){
             try {
                 executor.execute(command);
             } catch (InvalidCommandException e) {
-                System.out.println("can't execute command: " + command);
+                System.out.println("couldn't execute command: " + command);
                 System.out.println(e.getMessage());
                 return;
             }
