@@ -14,6 +14,8 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#Example">Example</a></li>
+        <li><a href="#Terms">Terms</a></li>
         <li><a href="#Tools">Tools</a></li>
       </ul>
     </li>
@@ -35,7 +37,9 @@
 The project is a lightweight interpreter executing assignment commands by order. <br />
 The input of the program is a text file , contains a series of text based assignment commands. <br />
 The program analyzes the text, executes the commands and finally prints the values of all the variables. </br> </br>
-For example: <br />
+
+
+### Example
 Given a text file with this content as input:  <br />
 i = 0 <br />
 j = ++i <br />
@@ -44,16 +48,18 @@ y = 5 + 3 * 10 <br />
 i += y <br />
 
 Output: <br />
-(i=37,j=1,x=6,y=35) <br /> <br /> 
-Let's learn some terms first <br />
+(i=37,j=1,x=6,y=35) <br /> 
+
+### Terms
+
 <u> Token: </u> <br />
 A group of characters having collective meaning. <br />
 A token can't contain a space character in it.<br />
 For example: "i" , "i++" , "5" , "+" , "var" <br />
-<u> Expression: </u> <br />
+<br /> <u> Expression: </u> <br />
 Group of tokens that can be evaluated to a single integer value. <br />
 For example: "5 + 3 * i + j"<br />
-<u> Command: </u> <br />
+<br /> <u> Command: </u> <br />
 The entire line of code <br />
 The program supports assignment commands only. <br />
 There are 2 types of assignment commands:
