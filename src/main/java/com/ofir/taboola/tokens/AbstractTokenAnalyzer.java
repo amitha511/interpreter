@@ -1,31 +1,37 @@
 package com.ofir.taboola.tokens;
 
 public abstract class AbstractTokenAnalyzer {
+
     public boolean isVariable(String token){
-        return Character.isAlphabetic(token.charAt(0));
+        for(int i=0; i < token.length(); i++){
+            char c = token.charAt(i);
+            boolean isAlphabetic = Character.isAlphabetic(c);
+            if(i == 0 && !isAlphabetic){
+                return false;
+            }
+            if(!isAlphabetic && c != '_' && c != '$' && !Character.isDigit(c)){
+                return false;
+            }
+        }
+        return true;
     }
 
-    public boolean isInteger(String token){
-        return tryParseInt(token) != Integer.MIN_VALUE;
+    public boolean isInteger(String token) {
+        try {
+            Integer.parseInt(token);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
     public boolean isDouble(String token){
-        return tryParseDouble(token) != -1.0;
+        try {
+            Double.parseDouble(token);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 
-    private int tryParseInt(String value) {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return Integer.MIN_VALUE;
-        }
-    }
-
-    private double tryParseDouble(String value) {
-        try {
-            return Double.parseDouble(value);
-        } catch (NumberFormatException e) {
-            return -1.0;
-        }
-    }
 }

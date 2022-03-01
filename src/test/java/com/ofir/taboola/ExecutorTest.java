@@ -1,6 +1,8 @@
 package com.ofir.taboola;
 
-import com.ofir.taboola.executor.Executor;
+import com.ofir.taboola.exceptions.InvalidCommandException;
+import com.ofir.taboola.exceptions.InvalidTokenException;
+import com.ofir.taboola.executor.CommandExecutor;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -83,16 +85,22 @@ public class ExecutorTest {
     public void testMulBeforeAdd() {
         List<String> commands = Arrays.asList(
                 "i = 1",
-                "j = i * 5 + i * 2 + i * 4"
+                "j = i * 5 + i * 4"
         );
         Map<String, Integer> state = execute(commands);
         assertEquals(state.get("i") , 1);
-        assertEquals(state.get("j") , 11);
+        assertEquals(state.get("j") , 9);
     }
 
     private Map<String,Integer> execute(List<String> commands){
-        Executor executor = new Executor();
-        executor.executeCommands(commands);
+        CommandExecutor executor = new CommandExecutor();
+        for(String command : commands){
+            try {
+                executor.execute(command);
+            } catch (InvalidCommandException e) {
+                return null;
+            }
+        }
         return executor.getState();
     }
 }
