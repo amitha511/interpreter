@@ -33,7 +33,7 @@ The program analyzes the text, executes the commands and finally prints the valu
 
 
 ### Example
-Given a text file with this content as input:  <br />
+Given a text file with the following content as input:  <br />
 i = 0 <br />
 j = ++i <br />
 x = i++ + 5 <br />
@@ -71,24 +71,22 @@ The tools that are involved in the project:
 
 ## Prerequisites
 
-Make sure that you have docker installed:
-* 
-  ```sh
-  docker version
-  ```
-Make sure that you have make installed:
-*
-    ```sh
-    make --version
-    ```
+1. make sure that you have docker installed:
+   ```sh
+    docker version
+   ```
+2. make sure that you have make installed:
+   ```sh
+    make run -s examples/input.txt
+   ```
 
 ## Executing the program
 
-1. build docker image for the calculator
+1. build docker image
    ```sh
     make build
    ```
-2. execute the calculator using an example input file
+2. execute the calculator passing an example input file as argument
    ```sh
-    make run -s examples/input1.txt
+    make run -s examples/input.txt
    ```
