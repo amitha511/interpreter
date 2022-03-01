@@ -1,10 +1,3 @@
-<div id="top"></div>
-<br />
-<div align="left">
-  <a>
-    <img src="https://apps.apple.com/il/app/the-calculator/id398129933" alt="Calculator" width="80" height="80">
-  </a>
-
 <h2 align="left">Text Based Calculator</h2>
 
 <!-- TABLE OF CONTENTS -->
@@ -54,20 +47,20 @@ Output: <br />
 
 <u> Token: </u> <br />
 A group of characters having collective meaning. <br />
-A token can't contain a space character in it.<br />
-For example: "i" , "i++" , "5" , "+" , "var" <br />
+A token can't contain a space character.<br />
+Examples for tokens: "i" , "i++" , "5" , "+" , "var" <br />
 <br /> <u> Expression: </u> <br />
 Group of tokens that can be evaluated to a single integer value. <br />
 For example: "5 + 3 * i + j"<br />
 <br /> <u> Command: </u> <br />
-The entire line of code <br />
+A command is the entire line <br />
 The program supports assignment commands only. <br />
-There are 2 types of assignment commands:
-- variable = expression
-- variable += expression
+There are 2 types of assignment commands: <br />
+- variable = expression <br />
+- variable += expression <br />
  
 
-### Tools
+## Tools
 
 The tools that are involved in the project:
 
@@ -76,7 +69,7 @@ The tools that are involved in the project:
 * [Maven](https://maven.apache.org/)
 * [Java - Amazon corretto 17](https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html)
 
-## Prerequisites validations
+## Prerequisites
 
 Make sure that you have docker installed:
 * 
@@ -89,31 +82,13 @@ Make sure that you have make installed:
     make --version
     ```
 
-### Executing the program
+## Executing the program
 
-Text about running the application on docker
-
-1. Clone the repo
+1. build docker image for the calculator
    ```sh
-   git clone git@github.com:ofirmatuti/text-based-calculator.git
+    make build
    ```
-2. Enter to the directory
+2. execute the calculator using an example input file
    ```sh
-   cd text-based-calculator
+    make run -s examples/input1.txt
    ```
-3. create a text file with the commands you want to execute:
-   ```sh
-    printf "i = 0 \nj = 1" > file.txt
-   ```
-4. print the file content
-   ```sh
-    cat file.txt
-   ```
-
-5. learn how to use make:
-   ```sh
-    make help
-   ```
-   
-<!-- MARKDOWN LINKS & IMAGES -->
-[product-screenshot]: https://apps.apple.com/il/app/the-calculator/id398129933
