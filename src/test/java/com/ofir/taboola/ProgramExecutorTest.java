@@ -27,6 +27,20 @@ public class ProgramExecutorTest {
     }
 
     @Test
+    public void testUnmodifiableState() throws InvalidCommandException {
+        List<String> commands = Arrays.asList(
+                "i = 5",
+                "j = 2"
+        );
+        Map<String,Integer> state = execute(commands);
+        try{
+            state.put("a" , 5);
+        } catch (UnsupportedOperationException e){
+            assertNotNull(e);
+        }
+    }
+
+    @Test
     public void testPreIncrement() throws InvalidCommandException {
         List<String> commands = Arrays.asList(
                 "i = 5",
