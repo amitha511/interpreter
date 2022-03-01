@@ -23,12 +23,12 @@ public class AssignmentCommandExecutor implements ICommandExecutor {
 
     @Override
     public void execute(String command, Map<String,Integer> varsState) throws InvalidCommandException {
-        String[] commandTokens = command.split(" ");
-        String dstVar = commandTokens[0];
-        String assignmentOperator = commandTokens[1];
-        String[] expressionTokens = Arrays.copyOfRange(commandTokens,2, commandTokens.length);
+        String[] cmdTokens = command.split(" ");
+        String dstVar = cmdTokens[0];
+        String assignmentOperator = cmdTokens[1];
+        String[] exprTokens = Arrays.copyOfRange(cmdTokens,2, cmdTokens.length);
 
-        ExpressionTree tree = buildExpressionTree(expressionTokens, assignmentOperator, dstVar,
+        ExpressionTree tree = buildExpressionTree(exprTokens, assignmentOperator, dstVar,
                 new TokenValidator(varsState));
 
         int val = evaluateExpressionTree(tree, varsState);
