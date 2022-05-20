@@ -27,9 +27,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project is a lightweight interpreter that is able to execute commands. <br />
-The input of the program is a text file , contains a series of text based commands. <br />
-The program analyzes the text, executes the commands and finally prints the values of all the variables. </br> </br>
+The project is able to execute commands. <br />
+
+The input of the program is a text file containing a series of commands. <br />
+
+The program analyzes the commands and executes them.
+
+Finally it prints the values of all the variables. </br> </br>
 
 
 ### Example
@@ -53,14 +57,14 @@ Examples for tokens: "i" , "i++" , "5" , "+" , "var" <br />
 Group of tokens that can be evaluated to a single integer value. <br />
 For example: "5 + 3 * i + j"<br />
 <br /> <u> Command: </u> <br />
-A command is the entire line <br />
+A command is the entire line. <br />
 The program supports assignment commands only. <br />
 There are 2 types of assignment commands: <br />
 - variable = expression <br />
 - variable += expression <br />
  
 
-## Tools
+### Tools
 
 The tools that are involved in the project:
 
