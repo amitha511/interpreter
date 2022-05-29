@@ -1,14 +1,9 @@
-package com.ofir.taboola;
+package com.amit.interpreter;
 
-import com.ofir.taboola.tokens.AbstractTokenAnalyzer;
-import com.ofir.taboola.tokens.ArithmeticTokenAnalyzer;
-import com.ofir.taboola.validators.AssignmentTokenValidator;
+import com.amit.interpreter.validators.AssignmentTokenValidator;
+import com.amit.interpreter.tokens.AbstractTokenAnalyzer;
+import com.amit.interpreter.tokens.ArithmeticTokenAnalyzer;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,8 +1,8 @@
-package com.ofir.taboola.validators;
+package com.amit.interpreter.validators;
 
-import com.ofir.taboola.exceptions.ErrorMessages;
-import com.ofir.taboola.exceptions.InvalidTokenException;
-import com.ofir.taboola.tokens.AbstractTokenAnalyzer;
+import com.amit.interpreter.exceptions.ErrorMessages;
+import com.amit.interpreter.exceptions.InvalidTokenException;
+import com.amit.interpreter.tokens.AbstractTokenAnalyzer;
 
 import java.util.*;
 

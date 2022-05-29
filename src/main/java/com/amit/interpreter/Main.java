@@ -1,7 +1,7 @@
-package com.ofir.taboola;
+package com.amit.interpreter;
 
-import com.ofir.taboola.exceptions.InvalidCommandException;
-import com.ofir.taboola.executor.ProgramExecutor;
+import com.amit.interpreter.exceptions.InvalidCommandException;
+import com.amit.interpreter.executor.ProgramExecutor;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

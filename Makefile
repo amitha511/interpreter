@@ -35,7 +35,7 @@ build-jar:
 	@ $(MVN) clean install
 
 build-docker:
-	@ docker build -t taboola --build-arg JAR_PATH=target/com.ofir.taboola-1.0-SNAPSHOT.jar .
+	@ docker build -t interpreter --build-arg JAR_PATH=target/com.amit.interpreter-1.0-SNAPSHOT.jar .
 
 build: build-jar build-docker
 
@@ -43,8 +43,8 @@ test:
 	@ $(MVN) test
 
 run:
-	@ docker run -v ${ROOT_DIR}/examples/:/app/examples/ taboola $(RUN_ARGS)
+	@ docker run -v ${ROOT_DIR}/examples/:/app/examples/ interpreter $(RUN_ARGS)
 
 clean:
 	@- rm -rf ./target
-	@- docker image rm -f taboola
+	@- docker image rm -f interpreter

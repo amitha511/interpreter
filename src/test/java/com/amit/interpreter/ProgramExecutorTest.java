@@ -1,8 +1,9 @@
-package com.ofir.taboola;
+package com.amit.interpreter;
 
-import com.ofir.taboola.exceptions.ErrorMessages;
-import com.ofir.taboola.exceptions.InvalidCommandException;
-import com.ofir.taboola.executor.ProgramExecutor;
+import com.amit.interpreter.exceptions.ErrorMessages;
+import com.amit.interpreter.exceptions.InvalidCommandException;
+import com.amit.interpreter.executor.ProgramExecutor;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -117,7 +118,7 @@ public class ProgramExecutorTest {
             execute(commands);
         } catch (InvalidCommandException e) {
             assertNotNull(e);
-            assertEquals(ErrorMessages.variableNotDeclared("k"), e.getMessage());
+            Assertions.assertEquals(ErrorMessages.variableNotDeclared("k"), e.getMessage());
         }
     }
 

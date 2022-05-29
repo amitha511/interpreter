@@ -1,12 +1,12 @@
-package com.ofir.taboola.executor;
+package com.amit.interpreter.executor;
 
-import com.ofir.taboola.exceptions.NonAssignmentException;
-import com.ofir.taboola.exceptions.InvalidCommandException;
-import com.ofir.taboola.expressions.tree_generators.ArithmeticExpressionTreeGenerator;
-import com.ofir.taboola.expressions.tree_generators.IExpressionTreeGenerator;
-import com.ofir.taboola.expressions.ExpressionTree;
-import com.ofir.taboola.tokens.ArithmeticTokenAnalyzer;
-import com.ofir.taboola.validators.TokenValidator;
+import com.amit.interpreter.exceptions.InvalidCommandException;
+import com.amit.interpreter.expressions.ExpressionTree;
+import com.amit.interpreter.expressions.tree_generators.IExpressionTreeGenerator;
+import com.amit.interpreter.validators.TokenValidator;
+import com.amit.interpreter.exceptions.NonAssignmentException;
+import com.amit.interpreter.expressions.tree_generators.ArithmeticExpressionTreeGenerator;
+import com.amit.interpreter.tokens.ArithmeticTokenAnalyzer;
 
 import java.util.Arrays;
 import java.util.Map;

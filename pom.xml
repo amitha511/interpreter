@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ofir.taboola</groupId>
-    <artifactId>com.ofir.taboola</artifactId>
+    <groupId>com.amit.interpreter</groupId>
+    <artifactId>com.amit.interpreter</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name> text based calculator </name>
@@ -26,7 +26,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.ofir.taboola.Main</mainClass>
+                            <mainClass>com.amit.interpreter.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

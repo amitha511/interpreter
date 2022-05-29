@@ -1,6 +1,6 @@
-package com.ofir.taboola.executor;
+package com.amit.interpreter.executor;
 
-import com.ofir.taboola.exceptions.InvalidCommandException;
+import com.amit.interpreter.exceptions.InvalidCommandException;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

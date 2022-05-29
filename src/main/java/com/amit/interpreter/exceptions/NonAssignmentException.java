@@ -1,4 +1,4 @@
-package com.ofir.taboola.exceptions;
+package com.amit.interpreter.exceptions;
 
 public class NonAssignmentException extends InvalidCommandException {
 

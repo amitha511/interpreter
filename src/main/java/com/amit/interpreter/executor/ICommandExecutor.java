@@ -1,7 +1,6 @@
-package com.ofir.taboola.executor;
+package com.amit.interpreter.executor;
 
-import com.ofir.taboola.exceptions.InvalidCommandException;
-import com.ofir.taboola.exceptions.InvalidTokenException;
+import com.amit.interpreter.exceptions.InvalidCommandException;
 
 import java.util.Map;
 

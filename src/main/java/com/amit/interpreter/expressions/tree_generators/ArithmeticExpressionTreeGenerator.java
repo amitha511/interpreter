@@ -1,8 +1,8 @@
-package com.ofir.taboola.expressions.tree_generators;
+package com.amit.interpreter.expressions.tree_generators;
 
-import com.ofir.taboola.exceptions.InvalidTokenException;
-import com.ofir.taboola.expressions.ExpressionTree;
-import com.ofir.taboola.validators.TokenValidator;
+import com.amit.interpreter.exceptions.InvalidTokenException;
+import com.amit.interpreter.expressions.ExpressionTree;
+import com.amit.interpreter.validators.TokenValidator;
 
 /*
     Arithmetic expression is an expression that can always be evaluated to a single integer
