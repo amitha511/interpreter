@@ -108,48 +108,6 @@ public class ProgramExecutorTest {
         assertEquals(state.get("j") , 9);
     }
 
-    @Test
-    public void testVariableNotDeclared() {
-        List<String> commands = Arrays.asList(
-                "i = 1",
-                "j = k"
-        );
-        try {
-            execute(commands);
-        } catch (InvalidCommandException e) {
-            assertNotNull(e);
-            Assertions.assertEquals(ErrorMessages.variableNotDeclared("k"), e.getMessage());
-        }
-    }
-
-    @Test
-    public void testVariableNotDeclaredPlusPlus() {
-        List<String> commands = Arrays.asList(
-                "i = 1",
-                "j = k++"
-        );
-        try {
-            execute(commands);
-        } catch (InvalidCommandException e) {
-            assertNotNull(e);
-            assertEquals(ErrorMessages.variableNotDeclared("k"), e.getMessage());
-        }
-    }
-
-    @Test
-    public void testInvalidToken() {
-        List<String> commands = Arrays.asList(
-                "i = 1",
-                "j = #"
-        );
-
-        try {
-            execute(commands);
-        } catch (InvalidCommandException e) {
-            assertNotNull(e);
-            assertEquals(ErrorMessages.invalidTokenMessage("#"), e.getMessage());
-        }
-    }
 
     private Map<String,Integer> execute(List<String> commands) throws InvalidCommandException {
         ProgramExecutor executor = new ProgramExecutor();

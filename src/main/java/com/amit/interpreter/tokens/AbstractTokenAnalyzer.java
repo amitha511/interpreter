@@ -26,13 +26,5 @@ public abstract class AbstractTokenAnalyzer {
         return true;
     }
 
-    public boolean isDouble(String token){
-        try {
-            Double.parseDouble(token);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
 
 }

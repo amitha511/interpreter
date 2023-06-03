@@ -1,10 +1,7 @@
 package com.amit.interpreter.executor;
 
-import com.amit.interpreter.exceptions.InvalidCommandException;
 import com.amit.interpreter.expressions.ExpressionTree;
 import com.amit.interpreter.expressions.tree_generators.IExpressionTreeGenerator;
-import com.amit.interpreter.validators.TokenValidator;
-import com.amit.interpreter.exceptions.NonAssignmentException;
 import com.amit.interpreter.expressions.tree_generators.ArithmeticExpressionTreeGenerator;
 import com.amit.interpreter.tokens.ArithmeticTokenAnalyzer;
 
@@ -13,39 +10,35 @@ import java.util.Map;
 
 public class AssignmentCommandExecutor implements ICommandExecutor {
 
-    IExpressionTreeGenerator expressionAnalyzer;
+    IExpressionTreeGenerator expressionTreeGenerator;
     ArithmeticTokenAnalyzer tokenAnalyzer;
 
     public AssignmentCommandExecutor(){
-        this.expressionAnalyzer = new ArithmeticExpressionTreeGenerator();
+        this.expressionTreeGenerator = new ArithmeticExpressionTreeGenerator();
         this.tokenAnalyzer = new ArithmeticTokenAnalyzer();
     }
 
     @Override
-    public void execute(String command, Map<String,Integer> varsState) throws InvalidCommandException {
+    public void execute(String command, Map<String,Integer> varsState) {
         String[] cmdTokens = command.split(" ");
         String dstVar = cmdTokens[0];
         String assignmentOperator = cmdTokens[1];
         String[] exprTokens = Arrays.copyOfRange(cmdTokens,2, cmdTokens.length);
 
-        ExpressionTree tree = buildExpressionTree(exprTokens, assignmentOperator, dstVar,
-                new TokenValidator(varsState));
+        ExpressionTree tree = buildExpressionTree(exprTokens, assignmentOperator, dstVar);
 
         int val = evaluateExpressionTree(tree, varsState);
 
         varsState.put(dstVar, val);
     }
 
-    private ExpressionTree buildExpressionTree(String[] tokens, String assignmentOperator, String dst,
-                                               TokenValidator tv) throws InvalidCommandException {
-        ExpressionTree tree = expressionAnalyzer.generateTree(tokens, tv);
+    private ExpressionTree buildExpressionTree(String[] tokens, String assignmentOperator, String dst) {
+        ExpressionTree tree = expressionTreeGenerator.generateTree(tokens);
         if(assignmentOperator.equals("+=")){
             ExpressionTree parent = new ExpressionTree("+");
             parent.left = new ExpressionTree(dst);
             parent.right = tree;
             tree = parent;
-        } else if(!assignmentOperator.equals("=")){
-            throw new NonAssignmentException("assignment operator is missing");
         }
         return tree;
     }
